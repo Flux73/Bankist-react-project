@@ -1,0 +1,15 @@
+.div {
+  background-color: #ec6ead;
+  height: 1200px;
+  width: 1300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transform: translate(-60%, -50%) rotate(120deg);
+
+  filter: blur(200px);
+  z-index: -1;
+  opacity: 0.8;
+}

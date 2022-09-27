@@ -1,0 +1,10 @@
+.out {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.out span {
+  font-size: 25px;
+  color: #e11d48;
+  font-weight: 600;
+}

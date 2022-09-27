@@ -1,0 +1,10 @@
+.deposit {
+  display: flex;
+  background-image: linear-gradient(to bottom right, #a9e34b, #40c057);
+  align-items: center;
+  color: white;
+  border-radius: 1000px;
+  font-size: 9px;
+  padding: 3px 12px;
+  letter-spacing: 1px;
+}

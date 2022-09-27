@@ -1,0 +1,10 @@
+.in {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.in span {
+  font-size: 25px;
+  color: #40c057;
+  font-weight: 600;
+}

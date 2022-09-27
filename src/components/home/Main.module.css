@@ -1,0 +1,39 @@
+.main {
+  width: 1000px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.movements {
+  width: 560px;
+  max-height: 486px;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  overflow: scroll;
+}
+
+.formWrapper {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary {
+  display: flex;
+}
+
+.summary div {
+  display: flex;
+  gap: 50px;
+}

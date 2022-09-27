@@ -1,0 +1,10 @@
+.withdrawal {
+  display: flex;
+  background-image: linear-gradient(to bottom right, #ff6b6b, #e11d48);
+  align-items: center;
+  color: white;
+  border-radius: 1000px;
+  font-size: 9px;
+  padding: 3px 12px;
+  letter-spacing: 1px;
+}

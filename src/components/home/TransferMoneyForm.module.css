@@ -1,0 +1,86 @@
+.operation {
+  padding: 30px 36px;
+  border-radius: 10px;
+  /* height: 150px; */
+}
+
+.operation h2 {
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.operation form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
+  row-gap: 5px;
+  column-gap: 10px;
+}
+
+.operation input {
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  padding: 4px;
+  border-radius: 5px;
+  border: none;
+  opacity: 0.7;
+  transition: all 0.3s ease-out;
+  outline: 2px solid #00f26100;
+}
+
+.operation input:focus {
+  border: none;
+  outline: 2px solid #ec6ead;
+  opacity: 0.9;
+}
+
+.operation input::placeholder {
+  opacity: 0.8;
+}
+
+.operation button {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 19px;
+  background-color: rgb(255, 255, 255, 1);
+  transition: all 0.3s ease-in-out;
+}
+
+.operation button:hover {
+  background-color: #ec6ead;
+  color: #fff;
+}
+
+.operation label {
+  font-size: 14px;
+  grid-row: 2;
+  text-align: center;
+}
+
+/* .input {
+    font-size: 19px;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 15px;
+    border: none;
+    opacity: 0.7;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-out;
+    outline: 2px solid #00f26100;
+  }
+  
+
+  
+
+
+
+*/
+.transferBG {
+  background-image: linear-gradient(to bottom right, #ffd43b, #fab005);
+}

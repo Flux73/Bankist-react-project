@@ -1,0 +1,9 @@
+.timer {
+  margin-left: auto;
+  font-size: 15px;
+}
+
+.timer span {
+  font-weight: 600;
+  color: #ec6ead;
+}

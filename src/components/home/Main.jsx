@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import TransferMoneyForm from './TransferMoneyForm';
 import Timer from './Timer';
@@ -15,6 +15,7 @@ import InterestSumm from './InterestSumm';
 const addFloatNum = num => num?.toFixed(2);
 
 const Main = () => {
+  const [isSorted, setIsSorted] = useState(false);
   const data = useSelector(state => state);
   const activeUser = data.activeUser;
   const movements = activeUser?.movements ?? [];
@@ -34,20 +35,39 @@ const Main = () => {
     .filter(mov => mov > 1)
     .reduce((mov, acc) => mov + acc, 0);
 
+  const sortHandler = isSortedParam => {
+    setIsSorted(isSortedParam);
+  };
+
   return (
     <div className={styles.main}>
-      <BalanceNav balance={balance} />
+      <BalanceNav balance={balance} sortHandler={sortHandler} />
       <div className={styles.details}>
         <div className={styles.movements}>
-          {[...movements].reverse().map((mov, i) => (
-            <Movement
-              key={i}
-              id={i + 1}
-              value={addFloatNum(mov)}
-              state={mov > 0 ? 'deposit' : 'withdrawal'}
-              date=""
-            />
-          ))}
+          {!isSorted &&
+            [...movements]
+              .reverse()
+              .map((mov, i) => (
+                <Movement
+                  key={i}
+                  id={movements.length - i}
+                  value={addFloatNum(mov)}
+                  state={mov > 0 ? 'deposit' : 'withdrawal'}
+                  date=""
+                />
+              ))}
+          {isSorted &&
+            [...movements]
+              .sort((a, b) => b - a)
+              .map((mov, i) => (
+                <Movement
+                  key={i}
+                  id={movements.length - i}
+                  value={addFloatNum(mov)}
+                  state={mov > 0 ? 'deposit' : 'withdrawal'}
+                  date=""
+                />
+              ))}
         </div>
         <div className={styles.formWrapper}>
           <TransferMoneyForm />
@@ -59,7 +79,7 @@ const Main = () => {
         <div>
           <InSumm value={inSummary} />
           <OutSumm value={addFloatNum(Math.abs(outSummary))} />
-          <InterestSumm value={interestSummary} />
+          <InterestSumm value={addFloatNum(interestSummary)} />
         </div>
         <Timer />
       </div>

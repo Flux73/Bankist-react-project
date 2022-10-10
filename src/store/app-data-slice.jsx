@@ -2,7 +2,12 @@ import { createSlice, current } from '@reduxjs/toolkit';
 
 import initData from './app-data';
 
-const initialState = { initData, activeUser: null, error: null };
+const initialState = {
+  initData,
+  activeUser: null,
+  error: null,
+  reactivateTime: false,
+};
 
 const appSlice = createSlice({
   name: 'appData',
@@ -42,13 +47,18 @@ const appSlice = createSlice({
 
       // if the guy who transfers got enough money!
       if (
-        state.activeUser.movements.reduce((mov, acc) => mov + acc, 0) < amount
+        state.activeUser.movements.reduce((acc, mov) => mov.movement + acc, 0) <
+        amount
       )
         return;
 
-      receiverUser.movements.push(amount);
-      state.activeUser.movements.push(-amount);
-      sender.movements.push(-amount);
+      receiverUser.movements.push({ movement: amount, date: `${new Date()}` });
+      state.activeUser.movements.push({
+        movement: -amount,
+        date: `${new Date()}`,
+      });
+      sender.movements.push({ movement: -amount, date: `${new Date()}` });
+      state.reactivateTime = true;
     },
 
     requestLoan: (state, { payload }) => {
@@ -58,10 +68,22 @@ const appSlice = createSlice({
       );
 
       // Test if at least one deposit is >= 10% of the requested loan!
-      if (state.activeUser.movements.some(mov => mov >= amount * (10 / 100))) {
-        state.activeUser.movements.push(amount);
-        user.movements.push(amount);
+      if (
+        state.activeUser.movements.some(
+          mov => mov.movement >= amount * (10 / 100)
+        )
+      ) {
+        state.activeUser.movements.push({
+          movement: amount,
+          date: `${new Date()}`,
+        });
+        user.movements.push({
+          movement: amount,
+          date: `${new Date()}`,
+        });
       }
+
+      state.reactivateTime = true;
     },
 
     closeAccount: function (state, { payload }) {
@@ -83,9 +105,19 @@ const appSlice = createSlice({
         state.activeUser = null;
       }
     },
+
+    deactivateTime: state => {
+      state.reactivateTime = false;
+    },
   },
 });
 
-export const { activeUser, logout, transferMoney, requestLoan, closeAccount } =
-  appSlice.actions;
+export const {
+  activeUser,
+  logout,
+  transferMoney,
+  requestLoan,
+  closeAccount,
+  deactivateTime,
+} = appSlice.actions;
 export default appSlice.reducer;

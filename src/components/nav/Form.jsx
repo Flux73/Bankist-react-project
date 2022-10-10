@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { activeUser } from '../../store/app-data-slice';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Footer';
 
 import styles from './Form.module.css';
 
@@ -53,7 +54,7 @@ const Form = () => {
         />
         <button>&rarr;</button>
       </form>
-      <p className={styles.footer}>Created By Salah Moumni</p>
+      <Footer />
     </div>
   );
 };

@@ -4,8 +4,6 @@ import Main from '../components/home/Main';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './Home.module.css';
-
 const Home = () => {
   const navigate = useNavigate();
   const data = useSelector(state => state);
@@ -16,10 +14,10 @@ const Home = () => {
   }, [data.activeUser, navigate]);
 
   return (
-    <div className={styles.container}>
+    <>
       <Header showBtn={true} />
       <Main />
-    </div>
+    </>
   );
 };
 

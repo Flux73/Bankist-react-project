@@ -6,6 +6,22 @@ import { logout } from '../../store/app-data-slice';
 import logo from '../../assets/logo.png';
 import styles from './Header.module.css';
 
+const getTimeZoneGretting = grettingParam => {
+  if (new Date().getHours() >= 0 && new Date().getHours() < 6)
+    grettingParam = 'Good Night';
+
+  if (new Date().getHours() >= 6 && new Date().getHours() < 12)
+    grettingParam = 'Good Morning';
+
+  if (new Date().getHours() >= 12 && new Date().getHours() < 18)
+    grettingParam = 'Good Afternoon';
+
+  if (new Date().getHours() >= 18 && new Date().getHours() < 23)
+    grettingParam = 'Good Evening';
+
+  return grettingParam || 'Welcome Back';
+};
+
 const Header = props => {
   const data = useSelector(state => state);
   const dispatch = useDispatch();
@@ -25,7 +41,8 @@ const Header = props => {
     <header className={styles.header}>
       {data.activeUser && (
         <h1>
-          Welcome Back, <span>{data.activeUser.owner.split(' ')[0]}</span>
+          {getTimeZoneGretting()} ,{' '}
+          <span>{data.activeUser.owner.split(' ')[0]}</span>
         </h1>
       )}
       {!data.activeUser && (
